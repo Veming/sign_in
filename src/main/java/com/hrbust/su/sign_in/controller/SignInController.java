@@ -1,7 +1,7 @@
-package com.hrbust.sign_in.controller;
+package com.hrbust.su.sign_in.controller;
 
-import com.hrbust.sign_in.bean.Student;
-import com.hrbust.sign_in.service.StudentService;
+import com.hrbust.su.sign_in.bean.Student;
+import com.hrbust.su.sign_in.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

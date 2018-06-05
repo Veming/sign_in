@@ -1,7 +1,6 @@
-package com.hrbust.sign_in.bean;
+package com.hrbust.su.sign_in.bean;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 

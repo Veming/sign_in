@@ -1,7 +1,7 @@
-package com.hrbust.sign_in.service;
+package com.hrbust.su.sign_in.service;
 
-import com.hrbust.sign_in.bean.Student;
-import com.hrbust.sign_in.dao.StudentDao;
+import com.hrbust.su.sign_in.bean.Student;
+import com.hrbust.su.sign_in.dao.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
