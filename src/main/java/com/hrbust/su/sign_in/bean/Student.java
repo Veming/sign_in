@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Student {
 
     @Id
-    private String id;
+    private String sid;
     private String realName;
     private String idCard;
     private String className;
@@ -21,12 +21,12 @@ public class Student {
     public Student(){
     }
 
-    public String getId() {
-        return id;
+    public String getSid() {
+        return sid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 
     public String getRealName() {

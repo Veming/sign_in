@@ -15,7 +15,7 @@ public class StudentService {
     }
 
     public Student getStudentInfo(String idNbr, String stuName) {
-        return studentDao.getUserInfo(stuName,idNbr);
+        return studentDao.getUserInfo(stuName,idNbr).get(0);
     }
 
 
