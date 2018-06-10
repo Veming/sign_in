@@ -13,4 +13,10 @@ public class StudentService {
     public Student getStudentInfo(){
         return studentDao.findById("").get();
     }
+
+    public Student getStudentInfo(String idNbr, String stuName) {
+        return studentDao.getUserInfo(stuName,idNbr);
+    }
+
+
 }

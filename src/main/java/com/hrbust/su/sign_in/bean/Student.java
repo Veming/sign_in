@@ -15,7 +15,7 @@ public class Student {
     private String className;
     private String dormNbr;
     private String flatName;
-    private Integer Monitor;
+    private Integer monitor;
 
 
     public Student(){
@@ -70,10 +70,10 @@ public class Student {
     }
 
     public Integer getMonitor() {
-        return Monitor;
+        return monitor;
     }
 
     public void setMonitor(Integer monitor) {
-        Monitor = monitor;
+        this.monitor = monitor;
     }
 }
