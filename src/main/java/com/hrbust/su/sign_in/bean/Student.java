@@ -16,6 +16,7 @@ public class Student {
     private String dormNbr;
     private String flatName;
     private Integer monitor;
+    private String sessionKey;
 
 
     public Student(){
@@ -75,5 +76,13 @@ public class Student {
 
     public void setMonitor(Integer monitor) {
         this.monitor = monitor;
+    }
+
+    public String getSessionKey() {
+        return sessionKey;
+    }
+
+    public void setSessionKey(String sessionKey) {
+        this.sessionKey = sessionKey;
     }
 }

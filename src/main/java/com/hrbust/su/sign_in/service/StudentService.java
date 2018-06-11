@@ -5,6 +5,9 @@ import com.hrbust.su.sign_in.dao.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class StudentService {
     @Autowired
@@ -15,7 +18,17 @@ public class StudentService {
     }
 
     public Student getStudentInfo(String idNbr, String stuName) {
-        return studentDao.getUserInfo(stuName,idNbr).get(0);
+        Student student = studentDao.getStudentInfo(stuName,idNbr);
+        if (null == student){
+            return null;
+        }
+        else {
+            return student;
+        }
+    }
+
+    public void setSessionKey(Student student){
+        studentDao.save(student);
     }
 
 
