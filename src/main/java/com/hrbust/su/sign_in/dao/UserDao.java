@@ -7,7 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserDao extends JpaRepository<User, String> {
     @Query(value = "select t from User t where t.sessionKey = ?1")
-    public User getUserInfo(String sessionKey);
+    public User getUserInfoBySessionKey(String sessionKey);
+
+    @Query(value = "select t from User t where t.openId = ?1")
+    public User getUserInfoByOpenId(String openid);
 }
 
 

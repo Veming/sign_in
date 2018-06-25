@@ -3,18 +3,12 @@ package com.hrbust.su.sign_in.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hrbust.su.sign_in.bean.Student;
-import com.hrbust.su.sign_in.bean.User;
 import com.hrbust.su.sign_in.service.LoginService;
 import com.hrbust.su.sign_in.service.StudentService;
-import com.hrbust.su.sign_in.util.WechatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 
 /**
  * @author su
@@ -28,7 +22,7 @@ public class LoginController {
     private LoginService loginService;
 
     @ResponseBody
-    @RequestMapping(value = "checkSession", method = RequestMethod.POST)
+    @RequestMapping(value = "/WeChat/checkSession", method = RequestMethod.POST)
     public String checkSession(@RequestBody String jsonStr){
         JSONObject json = JSON.parseObject(jsonStr);
         String sessionKey = json.getString("sessionKey");
@@ -41,23 +35,24 @@ public class LoginController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "/WeChat/register", method = RequestMethod.POST)
     public String register(@RequestBody String jsonStr){
-        JSONObject studentJson = null;
-        try {
-            JSONObject json = JSON.parseObject(jsonStr);
-            Student student = studentService.getStudentInfo(json.getString("idNbr"),json.getString("stuName"));
-            if (student == null){
-                return "error";
-            }
-            String sessionKey = loginService.register(json.getString("code"),student.getSid());
-            student.setSessionKey(sessionKey);
-            studentService.setSessionKey(student);
-            studentJson= (JSONObject) JSON.toJSON(student);
-            return studentJson.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
+        JSONObject json = JSON.parseObject(jsonStr);
+        return loginService.register(json.getString("code"),json.getString("idNbr"),json.getString("stuName"));
+    }
+
+    @RequestMapping(value = "/WeChat/IdentityCheck", method = {RequestMethod.POST, RequestMethod.GET})
+    public String identityCheck(@RequestBody String jsonStr){
+        //转化为json
+        JSONObject json = JSON.parseObject(jsonStr);
+        // 若code存在，使用code查询， 返回session和用户类别， 否则查询通过session查询， 若session查询失败，返回fail，并使小程序session清空，重新运行小程序
+        System.out.println(jsonStr);
+        String sessionKey = json.getString("sessionKey");
+        if (sessionKey != null){
+            return loginService.checkSession(sessionKey);
         }
-        return studentJson.toString();
+        else {
+            return loginService.checkCode(json.getString("code"));
+        }
     }
 }

@@ -13,19 +13,16 @@ public class StudentService {
     @Autowired
     StudentDao studentDao;
 
+    public String signIn(String sCode){
+
+        return null;
+    }
+
     public Student getStudentInfo(){
         return studentDao.findById("").get();
     }
 
-    public Student getStudentInfo(String idNbr, String stuName) {
-        Student student = studentDao.getStudentInfo(stuName,idNbr);
-        if (null == student){
-            return null;
-        }
-        else {
-            return student;
-        }
-    }
+
 
     public void setSessionKey(Student student){
         studentDao.save(student);

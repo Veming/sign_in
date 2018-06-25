@@ -11,9 +11,9 @@ public interface StudentDao extends JpaRepository<Student, String> {
 
 
     @Query(value = "select t from Student t where t.realName = ?1 and t.idCard = ?2")
-    public Student getStudentInfo(String realName, String idNbr);
+    public Student getStudentByRealNameAndIdCard(String realName, String idNbr);
 
-    @Query(value = "select t from Student t where t.sessionKey = ?1")
-    public Student getStudentBySessionKey(String sessionKey);
+    @Query(value = "select t from Student t where t.sid = ?1")
+    public Student getStudentBySid(String sid);
 
 }

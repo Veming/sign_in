@@ -12,7 +12,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.UUID;
 
-public class WechatUtil {
+public class WeChatUtil {
 
     public static String getGUID()
     {
