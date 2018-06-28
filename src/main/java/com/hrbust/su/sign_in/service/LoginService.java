@@ -48,24 +48,9 @@ public class LoginService {
 
     public String checkSession(String sessionKey) {
         User user = userDao.getUserInfoBySessionKey(sessionKey);
-        JSONObject json ;
-        if (user != null){
-           if (user.getType() == 0){
-               //搜索教师表 获取教师信息
-               Teacher teacher = teacherDao.getTeacherByTid(user.getId());
-               json = (JSONObject) JSON.toJSON(teacher);
-               json.put("type",0);
-               return json.toString();
-           }
-           else {
-               // 搜索学生表 获取学生信息
-               Student student = studentDao.getStudentBySid(user.getId());
-               json = (JSONObject) JSON.toJSON(student);
-               json.put("type",user.getType());
-               return json.toString();
-           }
-        }
-        return  null;
+        JSONObject json = new JSONObject();
+        json.put("type",user.getType());
+        return json.toString();
     }
 
     public String checkCode(String code) {

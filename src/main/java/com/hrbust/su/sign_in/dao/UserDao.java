@@ -9,6 +9,9 @@ public interface UserDao extends JpaRepository<User, String> {
     @Query(value = "select t from User t where t.sessionKey = ?1")
     public User getUserInfoBySessionKey(String sessionKey);
 
+    @Query(value = "select t.id from User t where t.sessionKey = ?1")
+    public String getIdBySessionKey(String sessionKey);
+
     @Query(value = "select t from User t where t.openId = ?1")
     public User getUserInfoByOpenId(String openid);
 }

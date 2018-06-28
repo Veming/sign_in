@@ -22,9 +22,6 @@ public class CheckInRecord {
     @Getter @Setter private String sTime;
     @Getter @Setter private String stuId;
 
-
-
-
     public CheckInRecord() {
     }
 }

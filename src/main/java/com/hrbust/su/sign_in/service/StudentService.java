@@ -1,7 +1,9 @@
 package com.hrbust.su.sign_in.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hrbust.su.sign_in.bean.Student;
 import com.hrbust.su.sign_in.dao.StudentDao;
+import com.hrbust.su.sign_in.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class StudentService {
     @Autowired
     StudentDao studentDao;
 
+    @Autowired
+    UserDao userDao;
+
     public String signIn(String sCode){
 
         return null;
@@ -22,10 +27,22 @@ public class StudentService {
         return studentDao.findById("").get();
     }
 
+    public String getStuInfoBySession(String sessionKey){
+        String sid = userDao.getIdBySessionKey(sessionKey);
+        Student student = studentDao.getStudentBySid(sid);
+        JSONObject json = (JSONObject) JSONObject.toJSON(student);
+        return json.toString();
+    }
 
+    public List<Student> findStudentByClass(String sessionKey){
+        String sid = userDao.getIdBySessionKey(sessionKey);
+        Student student = studentDao.getStudentBySid(sid);
 
-    public void setSessionKey(Student student){
-        studentDao.save(student);
+        List<Student> StudentList =
+                 studentDao.getStudentsByProfessionAndGradeAndClassName
+                        (student.getProfession(),student.getGrade(),student.getClassName(),sid);
+//        JSONObject json = (JSONObject) JSONObject.toJSON(StudentList);
+        return StudentList;
     }
 
 
