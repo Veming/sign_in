@@ -57,9 +57,18 @@ public class WeChatController {
     @RequestMapping(value = "/class_begin", method = {RequestMethod.POST,RequestMethod.GET,RequestMethod.PUT})
     public String classBegin(@RequestBody String jsonStr){
         JSONObject json = JSON.parseObject(jsonStr);
-        String sessionKey = json.getString("sessionKey");
-        return teacherService.createSourceCode(sessionKey);
+        return teacherService.createSourceCode(json);
+    }
 
+    @RequestMapping(value = "/sign_in",method = RequestMethod.POST)
+    public String SignIn(@RequestBody String jsonStr){
+        JSONObject json = JSONObject.parseObject(jsonStr);
+
+        studentService.signIn(json);
+
+
+        return null;
 
     }
+
 }

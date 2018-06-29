@@ -18,7 +18,16 @@ public class StudentService {
     @Autowired
     UserDao userDao;
 
-    public String signIn(String sCode){
+    public String signIn(JSONObject data){
+        String sessionKey = data.getString("sessionKey");
+        String lng = data.getString("");
+        String lat = data.getString("");
+        String sourceCode = data.getString("");
+
+
+        String sid = userDao.getIdBySessionKey(sessionKey);
+
+
 
         return null;
     }
