@@ -46,4 +46,12 @@ public class StudentService {
     }
 
 
+    public String changeStuState(String sid) {
+        try{
+            studentDao.setState(sid);
+        }catch (Exception e){
+            return "fail";
+        }
+        return "success";
+    }
 }

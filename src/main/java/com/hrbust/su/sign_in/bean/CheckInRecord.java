@@ -17,6 +17,7 @@ public class CheckInRecord {
     @GeneratedValue
     @Getter @Setter private Integer id;
 
+    @Getter @Setter private String classCode;
     @Getter @Setter private String longitude;
     @Getter @Setter private String dimensions;
     @Getter @Setter private String sTime;
