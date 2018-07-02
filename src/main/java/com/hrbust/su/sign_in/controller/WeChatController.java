@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonParser;
 import com.hrbust.su.sign_in.bean.Student;
+import com.hrbust.su.sign_in.service.EmailService;
 import com.hrbust.su.sign_in.service.StudentService;
 import com.hrbust.su.sign_in.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class WeChatController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    EmailService emailService;
 
 //    @GetMapping("")
 //    public void index(){
@@ -65,10 +69,13 @@ public class WeChatController {
         JSONObject json = JSONObject.parseObject(jsonStr);
 
         studentService.signIn(json);
-
-
         return null;
+    }
 
+    @RequestMapping(value = "/send_code", method = {RequestMethod.POST})
+    public String getCode(@RequestBody String jsonStr){
+        JSONObject json = JSONObject.parseObject(jsonStr);
+        return emailService.sendMessage(json.getString("to"),json.getString("username"),json.getString("code"));
     }
 
 }

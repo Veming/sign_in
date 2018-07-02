@@ -1,6 +1,5 @@
 package com.hrbust.su.sign_in.bean;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,20 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "t_check_in_record")
-public class CheckInRecord {
+@Table(name = "t_class_record")
+public class ClassRecord {
 
     @Id
-    @GeneratedValue
-    @Getter @Setter private Integer id;
+    @Getter @Setter private String courseCode;
 
     @Getter @Setter private String classCode;
     @Getter @Setter private String longitude;
-    // 距离
-    @Getter @Setter private String dimensions;
-    @Getter @Setter private String checkInTime;
-    @Getter @Setter private String stuId;
+    @Getter @Setter private String createTime;
+    @Getter @Setter private String tid;
 
-    public CheckInRecord() {
+    public ClassRecord() {
     }
 }

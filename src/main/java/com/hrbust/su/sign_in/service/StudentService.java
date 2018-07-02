@@ -6,6 +6,7 @@ import com.hrbust.su.sign_in.dao.StudentDao;
 import com.hrbust.su.sign_in.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,20 @@ public class StudentService {
     UserDao userDao;
 
     public String signIn(JSONObject data){
+        Jedis jedis = new Jedis();
+
         String sessionKey = data.getString("sessionKey");
-        String lng = data.getString("");
-        String lat = data.getString("");
-        String sourceCode = data.getString("");
+        String fLng = data.getString("longitude");
+        String fLat = data.getString("latitude");
+        String sourceCode = data.getString("sourceCode");
+
+        String tLng = jedis.get("sourceCode:"+sourceCode+"_longitude");
+        String tLat = jedis.get("sourceCode:"+sourceCode+"_latitude");
+
+
+
+
+
 
 
         String sid = userDao.getIdBySessionKey(sessionKey);
@@ -32,9 +43,6 @@ public class StudentService {
         return null;
     }
 
-    public Student getStudentInfo(){
-        return studentDao.findById("").get();
-    }
 
     public String getStuInfoBySession(String sessionKey){
         String sid = userDao.getIdBySessionKey(sessionKey);

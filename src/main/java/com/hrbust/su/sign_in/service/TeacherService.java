@@ -49,9 +49,10 @@ public class TeacherService {
         jedis.set("sourceCode_"+sourceCode+"_latitude",latitude);
 
         // 设置 课程码 生存时间
-        jedis.expire("sourceCode:"+sourceCode,900);
+        jedis.expire("sourceCode:"+sourceCode+"_tid",900);
         jedis.expire("sourceCode_"+sourceCode+"_longitude",900);
         jedis.expire("sourceCode_"+sourceCode+"_latitude",900);
+
 
         return sourceCode;
     }
