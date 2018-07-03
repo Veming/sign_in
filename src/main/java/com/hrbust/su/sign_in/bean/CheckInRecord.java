@@ -17,11 +17,16 @@ public class CheckInRecord {
     @GeneratedValue
     @Getter @Setter private Integer id;
 
+    // 课程码
     @Getter @Setter private String classCode;
+    // 经纬度
     @Getter @Setter private String longitude;
+    @Getter @Setter private String latitude;
     // 距离
-    @Getter @Setter private String dimensions;
+    @Getter @Setter private String distance;
+    // 签到时间
     @Getter @Setter private String checkInTime;
+    // 学生id
     @Getter @Setter private String stuId;
 
     public CheckInRecord() {

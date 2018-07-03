@@ -26,11 +26,6 @@ public class WeChatController {
     @Autowired
     EmailService emailService;
 
-//    @GetMapping("")
-//    public void index(){
-//
-//    }
-
     @RequestMapping(value = "/sign_in")
     public String signIn(){
         //获取学生学号
@@ -67,9 +62,7 @@ public class WeChatController {
     @RequestMapping(value = "/sign_in",method = RequestMethod.POST)
     public String SignIn(@RequestBody String jsonStr){
         JSONObject json = JSONObject.parseObject(jsonStr);
-
-        studentService.signIn(json);
-        return null;
+        return studentService.signIn(json);
     }
 
     @RequestMapping(value = "/send_code", method = {RequestMethod.POST})

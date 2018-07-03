@@ -40,7 +40,11 @@ public class LoginService {
             user.setSessionKey(sessionKey);
             user.setType(2);
             user.setId(student.getSid());
-            userDao.save(user);
+            try {
+                userDao.save(user);
+            }catch (Exception e){
+                return "fail";
+            }
             return sessionKey;
         }
     }
@@ -62,7 +66,11 @@ public class LoginService {
         User user = userDao.getUserInfoByOpenId(openId);
         if (user != null){
             user.setSessionKey(sessionKey);
-            userDao.save(user);
+            try{
+                userDao.save(user);
+            }catch (Exception e){
+                return "fail";
+            }
             JSONObject json = new JSONObject();
             json.put("type",user.getType());
             json.put("sessionKey",sessionKey);

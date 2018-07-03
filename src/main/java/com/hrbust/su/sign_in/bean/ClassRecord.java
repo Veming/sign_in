@@ -13,11 +13,16 @@ import javax.persistence.Table;
 public class ClassRecord {
 
     @Id
-    @Getter @Setter private String courseCode;
+    @Getter @Setter private String rid;
 
-    @Getter @Setter private String classCode;
+    @Getter @Setter private String courseCode;
+    // 经纬
     @Getter @Setter private String longitude;
+    // 纬度
+    @Getter @Setter private String latitude;
+    // 创建时间
     @Getter @Setter private String createTime;
+    // 教师id
     @Getter @Setter private String tid;
 
     public ClassRecord() {
