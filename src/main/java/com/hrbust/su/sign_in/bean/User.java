@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "t_user")
 public class User {
     @Id
-    @Getter  @Setter private String openId;
+    @Getter @Setter private String openId;
     @Getter @Setter private String sessionKey;
     @Getter @Setter private Integer type;
     @Getter @Setter private String id;
