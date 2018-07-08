@@ -3,7 +3,6 @@ package com.hrbust.su.sign_in.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.core.JsonParser;
 import com.hrbust.su.sign_in.bean.Student;
 import com.hrbust.su.sign_in.service.EmailService;
 import com.hrbust.su.sign_in.service.StudentService;
@@ -25,15 +24,6 @@ public class WeChatController {
 
     @Autowired
     EmailService emailService;
-
-    @RequestMapping(value = "/sign_in")
-    public String signIn(){
-        //获取学生学号
-
-        return null;
-    }
-
-
 
     @RequestMapping(value = "/find_students_by_class",method = RequestMethod.GET)
     public List<Student> findStudentByClass(@RequestParam(value = "sessionKey",required = false) String sessionKey){
@@ -60,7 +50,7 @@ public class WeChatController {
     }
 
     @RequestMapping(value = "/sign_in",method = RequestMethod.POST)
-    public String SignIn(@RequestBody String jsonStr){
+    public String signIn(@RequestBody String jsonStr){
         JSONObject json = JSONObject.parseObject(jsonStr);
         return studentService.signIn(json);
     }
@@ -69,6 +59,24 @@ public class WeChatController {
     public String getCode(@RequestBody String jsonStr){
         JSONObject json = JSONObject.parseObject(jsonStr);
         return emailService.sendMessage(json.getString("to"),json.getString("username"),json.getString("code"));
+    }
+
+    @RequestMapping(value = "/check_source_code",method = RequestMethod.POST)
+    public String checkSourceCode(@RequestBody String jsonStr){
+        JSONObject json = JSONObject.parseObject(jsonStr);
+        return teacherService.checkSourceCode(json);
+    }
+
+    @RequestMapping(value = "/who_has_check_in",method = RequestMethod.POST)
+    public String whoHasCheckIn(@RequestBody String jsonStr){
+        JSONObject json = JSONObject.parseObject(jsonStr);
+        return teacherService.whoHasCheckIn(json);
+    }
+
+    @RequestMapping(value = "/check_sign_in",method = RequestMethod.POST)
+    public String checkSignIn(@RequestBody String jsonStr){
+        JSONObject json = JSONObject.parseObject(jsonStr);
+        return studentService.checkSignIn(json);
     }
 
 }

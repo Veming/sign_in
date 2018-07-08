@@ -27,9 +27,9 @@ public class Util {
         String url = "https://apis.map.qq.com/ws/distance/v1/?mode=driving&" +
                 "from="+fLat+","+fLng+"&" +
                 "to="+tLat+","+tLng+"&" +
-                "key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77";
+                "key=TVFBZ-4ALC4-KGLUR-XMVQ7-4JZSK-XGBYT";
         String distance = null;
-
+        System.out.println(url);
         try {
             distance =  URL2JSON(url).getJSONObject("result").getJSONArray("elements").getJSONObject(0).getString("distance");
         } catch (IOException e) {
