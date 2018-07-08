@@ -58,7 +58,7 @@ public class WeChatController {
     @RequestMapping(value = "/send_code", method = {RequestMethod.POST})
     public String getCode(@RequestBody String jsonStr){
         JSONObject json = JSONObject.parseObject(jsonStr);
-        return emailService.sendMessage(json.getString("to"),json.getString("username"),json.getString("code"));
+        return emailService.sendMessage(json.getString("to"),json.getString("code"));
     }
 
     @RequestMapping(value = "/check_source_code",method = RequestMethod.POST)

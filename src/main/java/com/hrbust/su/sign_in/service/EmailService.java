@@ -14,7 +14,7 @@ import java.util.Properties;
 @Service
 public class EmailService {
 
-    public String sendMessage(String to, String username, String code){
+    public String sendMessage(String to, String code){
         // 发件人电子邮箱
         String from = "1159288455@qq.com";
         // 指定发送邮件的主机为 smtp.qq.com
@@ -46,7 +46,7 @@ public class EmailService {
             message.setSubject("哈尔滨理工大学 -学生签到系统 —— 验证code");
             // 设置消息体
             message.setText("测试");
-            message.setContent(setMessageInfo(username,code),"text/html;charset=utf-8");
+            message.setContent(setMessageInfo(code),"text/html;charset=utf-8");
             // 关于QQ邮箱，还要设置SSL加密，加上以下代码即可
             MailSSLSocketFactory sf = new MailSSLSocketFactory();
             sf.setTrustAllHosts(true);
@@ -62,7 +62,7 @@ public class EmailService {
         return "success";
     }
 
-    private String setMessageInfo(String username, String code){
+    private String setMessageInfo(String code){
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         return  "<br>\n" +
@@ -124,7 +124,7 @@ public class EmailService {
                 "                            <tbody>\n" +
                 "                                <tr>\n" +
                 "                                    <td border=\"0\" colspan=\"2\" style=\" font-size:16px;vertical-align:bottom;font-family:'Microsoft YaHei';\" width=\"760\" height=\"56\"\n" +
-                "                                        align=\"left\">尊敬的 "+username+" \n" +
+                "                                        align=\"left\">您好\n" +
                 "                                        <a></a>：</td>\n" +
                 "                                </tr>\n" +
                 "                                <tr>\n" +

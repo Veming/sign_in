@@ -30,6 +30,9 @@ public class LoginService {
         if (student == null){
             return "None";
         }
+        else if (student.getState().equals("active")) {
+            return "exist";
+        }
         else {
             // 生成新生信息
             User user = new User();
